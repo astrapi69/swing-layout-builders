@@ -166,7 +166,7 @@
  * permanent authorization for you to choose that version for the
  * Library.
  */
-package io.github.astrapi69.swing.layout.builders;
+package io.github.astrapi69.swing.layout.builders.demo;
 
 import static io.github.astrapi69.swing.layout.builders.Layout.borders;
 import static io.github.astrapi69.swing.layout.builders.Layout.card;

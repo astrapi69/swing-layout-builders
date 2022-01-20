@@ -168,8 +168,6 @@
  */
 package io.github.astrapi69.swing.layout.builders;
 
-//import static org.junit.Assert.*;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 

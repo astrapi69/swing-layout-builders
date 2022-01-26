@@ -180,9 +180,25 @@ public class BorderBuilderTest
 	JLabel N, S, E, W, C;
 
 	BorderBuilder bb;
+	JComponent jComponent;
 	Assertions A;
 
-	@BeforeEach
+	public static void main(String[] args)
+	{
+		final Frame frame = new Frame("BorderBuilderTest");
+		BorderBuilder borderBuilder = new BorderBuilder(new ComponentConvertedReturnOriginal());
+		borderBuilder
+				.gap(5).north(new JButton("North")).west(new JButton("West"))
+				.center(new JButton("BorderLayout (Center)")).east(new JButton("East"))
+				.south(new JButton("South"));
+		JComponent jComponent = borderBuilder.subclassBuild();
+		frame.add(jComponent);
+		frame.setSize(400, 400);
+		frame.setVisible(true);
+	}
+		
+
+		@BeforeEach
 	public void setUp()
 	{
 		bb = new BorderBuilder(new ComponentConvertedReturnOriginal());
@@ -191,7 +207,13 @@ public class BorderBuilderTest
 		E = new JLabel();
 		W = new JLabel();
 		C = new JLabel();
+		jComponent = new JPanel();
 		A = new Assertions(bb);
+	}
+
+	@Test
+	public void subclassBuild() {
+		bb.layoutContainer(jComponent);
 	}
 
 	@Test

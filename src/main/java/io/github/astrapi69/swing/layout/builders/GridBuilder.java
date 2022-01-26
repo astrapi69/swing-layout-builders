@@ -223,10 +223,14 @@ public class GridBuilder extends PanelBuilder<GridBuilder>
 		return this;
 	}
 
+	public GridLayout toGridLayout(){
+		return new GridLayout(rows, cols, hgap, vgap);
+	}
+
 	@Override
 	public JComponent subclassBuild()
 	{
-		JPanel result = new JPanel(new GridLayout(rows, cols, hgap, vgap));
+		JPanel result = new JPanel(toGridLayout());
 		for (Component c : items)
 		{
 			result.add(c);

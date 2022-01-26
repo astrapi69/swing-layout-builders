@@ -258,12 +258,17 @@ public class FlowBuilder extends PanelBuilder<FlowBuilder>
 		return this;
 	}
 
-	@Override
-	protected JComponent subclassBuild()
+	public FlowLayout toFlowLayout()
 	{
 		FlowLayout layout = new FlowLayout(align, hgap, vgap);
 		layout.setAlignOnBaseline(isValignedOnBaseline);
-		JPanel result = new JPanel(layout);
+		return layout;
+	}
+
+	@Override
+	protected JComponent subclassBuild()
+	{
+		JPanel result = new JPanel(toFlowLayout());
 		for (Component c : items)
 		{
 			result.add(c);

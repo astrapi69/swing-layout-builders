@@ -178,11 +178,17 @@ public class BorderBuilder extends PanelBuilder<BorderBuilder>
 	private Component north, south, west, east, center;
 	private int hgap = 0;
 	private int vgap = 0;
+	private Container layoutContainer;
 
 	/** Use Layout.borders() */
 	BorderBuilder(ComponentConverter converter)
 	{
 		super(converter);
+	}
+
+	public BorderBuilder layoutContainer(JComponent container) {
+		this.layoutContainer = container;
+		return this;
 	}
 
 	public BorderBuilder gap(int i)
@@ -232,10 +238,18 @@ public class BorderBuilder extends PanelBuilder<BorderBuilder>
 		return this;
 	}
 
+	public BorderLayout toBorderLayout() {
+		return new BorderLayout(hgap, vgap);
+	}
+
 	@Override
 	public JComponent subclassBuild()
 	{
-		JPanel result = new JPanel(new BorderLayout(hgap, vgap));
+		if (layoutContainer == null) {
+			layoutContainer = new JPanel();
+		}
+		layoutContainer.setLayout(toBorderLayout());
+		JComponent result = (JComponent) layoutContainer;
 		if (north != null)
 		{
 			result.add(north, BorderLayout.NORTH);
